@@ -1,6 +1,6 @@
 # Optical conductivity of phosphorene
 
-Here we show how to calculate the optical conductivity of phosphorene using the tight-binding model and the Kubo formula.
+Here we show how to calculate the optical conductivity of phosphorene numerically using the tight-binding model and the Kubo formula. We use Python to implement the numerical algorithm, in particular we use highly efficient `Numpy` and `Scipy` for vectorization and built-in `Multiprocessing` for parallelization.
 
 ## Theoretical approach
 
@@ -20,7 +20,7 @@ The optical conductivity of phosphorene can readily be calculated by using the K
 $$\sigma_{\alpha\beta}(\omega) = \frac{e^2\hbar}{2\pi^2i}\sum_{m, n}\int d\textbf{k} \frac{f[E_m(\textbf{k})] - f[E_n(\textbf{k})]}{E_m(\textbf{k}) - E_n(\textbf{k})} \frac{\bra{m\textbf{k}}{\textbf{v}_{\alpha}}\ket{n\textbf{k}}
 \bra{n\textbf{k}}{\textbf{v}_{\beta}}\ket{m\textbf{k}}}{E_m(\textbf{k}) - E_n(\textbf{k}) + \hbar\omega + i\eta},$$
 
-where $\alpha=x, y$ is the tensor index, $\omega$ is the optical frequency, $m$ is the band index, $\textbf{k}=(k_x, k_y)$ is the 2D wave vector, $f(E)$ is the Fermi-Dirac function, $E_{m}(\textbf{k})$ is the eigenenergy, $\ket{m\textbf{k}}$ is the eigenstate, $\textbf{v}_{\alpha}$ is the $\alpha$ component of the velocity operator $\textbf{v}=\hbar^{-1}\partial H/\partial \textbf{k}$, and $\eta$ is a finite broadening. There are four components in the optical conductivity tensor Eq. (S4): $\sigma_{xx}$ and $\sigma_{yy}$ for the longitudinal optical conductivities and $\sigma_{xy}$ and $\sigma_{yx}$ for the transverse optical conductivities (or the optical Hall conductivities). For the longitudinal components we have $\sigma_{xx}=\sigma_{yy}$ ($\sigma_{xx}\neq\sigma_{yy}$) for an isotropic (anisotropic) system. 
+where $\alpha=x, y$ is the tensor index, $\omega$ is the optical frequency, $m$ is the band index, $\textbf{k}=(k_x, k_y)$ is the 2D wave vector, $f(E)$ is the Fermi-Dirac function, $E_{m}(\textbf{k})$ is the eigenenergy, $\ket{m\textbf{k}}$ is the eigenstate, $\textbf{v}_{\alpha}$ is the $\alpha$ component of the velocity operator $\textbf{v}=\hbar^{-1}\partial H/\partial \textbf{k}$, and $\eta$ is a finite broadening. There are four components: $\sigma_{xx}$ and $\sigma_{yy}$ for the longitudinal optical conductivities and $\sigma_{xy}$ and $\sigma_{yx}$ for the transverse optical conductivities (or the optical Hall conductivities). For the longitudinal components we have $\sigma_{xx}=\sigma_{yy}$ ($\sigma_{xx}\neq\sigma_{yy}$) for an isotropic (anisotropic) system. 
 
 ## Numerical implementation
 
@@ -29,3 +29,7 @@ where $\alpha=x, y$ is the tensor index, $\omega$ is the optical frequency, $m$ 
 - K-point (2D wavevector) parallelization for electronic bandstructure calculation
 
 - E-point (photon energy) parallelization for optical conductivity calculation
+
+- `sigma.py`: The script to first calculate the electronic band structure of phosphorene and on top of that to calculate the optical conductivity of phosphorene
+
+- `plot.py`: The script to post-process (visualize) the numerical results obtained by `sigma.py`
