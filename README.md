@@ -1,6 +1,6 @@
 # Optical conductivity of phosphorene
 
-Here we show how to calculate the optical conductivity of phosphorene numerically using the tight-binding model and the Kubo formula. We use Python to implement the numerical algorithm, in particular we use highly efficient `Numpy` and `Scipy` for vectorization and built-in `Multiprocessing` for parallelization.
+Here we show how to calculate the optical conductivity of phosphorene numerically using the tight-binding model and the Kubo formula. We use Python to implement the numerical algorithm, in particular we use `Numpy` and `Scipy` for vectorization and `Multiprocessing` for parallelization.
 
 ## Theoretical approach
 
